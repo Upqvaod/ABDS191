@@ -34,5 +34,6 @@ CREATE TABLE Comic_Compras(
 	id_compra BIGINT,
 	id_comic BIGINT,
 	FOREIGN KEY (id_compra) REFERENCES Compras(id_compra),
-	FOREIGN KEY (id_comic) REFERENCES Comics(id_comic)
+	FOREIGN KEY (id_comic) REFERENCES Comics(id_comic),
 );
+
