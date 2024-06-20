@@ -29,8 +29,8 @@ ELSE
 	print 'Consulte a su administrador en turno'
  END
 
- */
 
+ 
  --WHILE
  DECLARE @contador int = 0
 
@@ -44,12 +44,33 @@ ELSE
 	print('Hola')
  END
  print ('aqui continua el flujo')
+ 
  BEGIN TRY
 	 set @contador = 'Diego'
  END TRY
  BEGIN CATCH
 	print ('La variable contador solo acepta enteros')
  END CATCH
-	
+
 	print ('soy otra consulta')
 	print('yo tambien')
+
+	 */
+
+--CASE
+
+DECLARE @valor int
+DECLARE @resultado char(10)=''
+SET @valor = 30
+
+SET @resultado = (CASE WHEN @valor = 10 THEN 'ROJO'
+					WHEN @valor = 20 THEN 'MORADO'
+					 WHEN @valor = 30 THEN 'AMARILLO'
+					ELSE 'AZUL'
+					END)
+PRINT @resultado
+
+select * ,(CASE WHEN disponibilidad = 'Disponible' THEN 'VERDE'
+				WHEN disponibilidad = 'Agotado' THEN 'ROJO' 
+				ELSE 'NEGRO' END) AS INDICADOR 
+				FROM Inventario
