@@ -43,13 +43,42 @@ INSERT INTO HistorialVisualizacion (UsuarioID, PeliculaID, FechaVisualizacion) V
 (8, 8, '2023-08-05'),
 (9, 9, '2023-09-09'),
 (10, 10, '2023-10-13'),
-(11, 11, '2023-01-25'),
-(12, 1, '2023-02-20'),
-(13, 2, '2023-03-17'),
-(14, 3, '2023-04-30'),
-(15, 4, '2023-05-14'),
-(16, 5, '2023-06-22'),
-(17, 6, '2023-07-26'),
-(18, 7, '2023-08-09'),
-(19, 8, '2023-09-13'),
-(20, 9, '2023-10-17');
+(1, 11, '2023-01-25'),
+(2, 1, '2023-02-20'),
+(3, 2, '2023-03-17'),
+(4, 3, '2023-04-30'),
+(5, 4, '2023-05-14'),
+(6, 5, '2023-06-22'),
+(7, 6, '2023-07-26'),
+(8, 7, '2023-08-09'),
+(9, 8, '2023-09-13'),
+(10, 9, '2023-10-17');
+
+
+SELECT * FROM Usuarios
+
+SELECT * FROM Peliculas
+
+SELECT * FROM HistorialVisualizacion
+
+SELECT 
+    u.UsuarioID, 
+    u.Nombre, 
+    u.Email, 
+    u.FechaRegistro, 
+    p.PeliculaID, 
+    p.Titulo, 
+    p.Genero, 
+    p.FechaEstreno, 
+    hv.FechaVisualizacion, 
+    s.Tipo AS TipoSuscripcion, 
+    s.FechaInicio AS FechaInicioSuscripcion, 
+    s.FechaFin AS FechaFinSuscripcion
+FROM 
+    Usuarios u
+JOIN 
+    HistorialVisualizacion hv ON u.UsuarioID = hv.UsuarioID
+JOIN 
+    Peliculas p ON hv.PeliculaID = p.PeliculaID
+LEFT JOIN 
+    Suscripciones s ON u.UsuarioID = s.UsuarioID;

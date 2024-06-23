@@ -32,3 +32,4 @@ CREATE TABLE HistorialVisualizacion (
 	FOREIGN KEY (PeliculaID) REFERENCES Peliculas(PeliculaID),
 );
 
+
