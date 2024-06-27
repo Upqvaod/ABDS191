@@ -76,3 +76,24 @@ EXEC sp_ConsultaTipoSuscripcion @Tipo = 'Suspendida'
 
 SELECT * FROM Suscripciones
 SELECT * FROM Usuarios
+
+--5. Crea un procedimiento para consultar que películas fueron reproducidas por el usuario pasando como parámetro el género de la película.
+CREATE PROCEDURE sp_ConsultaPeliculaUGenero
+	@Genero nvarchar(50)
+AS
+BEGIN
+	
+	SELECT  u.UsuarioID, u.Nombre, u.Email, p.PeliculaID, p.Titulo, p.Genero, p.FechaEstreno, h.FechaVisualizacion
+	FROM HistorialVisualizacion h
+	JOIN Usuarios u ON h.UsuarioID = u.UsuarioID
+	JOIN Peliculas p ON h.PeliculaID = p.PeliculaID
+	WHERE Genero = @Genero
+END
+
+EXEC sp_ConsultaPeliculaUGenero @Genero = 'Aventura'
+EXEC sp_ConsultaPeliculaUGenero @Genero = 'Drama'
+EXEC sp_ConsultaPeliculaUGenero @Genero = 'Ciencia Ficción'
+
+SELECT * FROM Peliculas
+
+
